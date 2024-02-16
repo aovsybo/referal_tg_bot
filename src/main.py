@@ -1,10 +1,3 @@
-
-
-# TODO: pydantic
-# TODO: docker
-# TODO: logs
-
-
 import asyncio
 from aiogram import types
 
@@ -12,6 +5,11 @@ from aiogram.filters import CommandStart
 from aiogram.types import Message
 
 from services.tg_bot import dp, main_loop
+from db import connect_db
+
+# TODO: pydantic
+# TODO: docker
+# TODO: logs
 
 
 @dp.message(CommandStart())
@@ -43,4 +41,5 @@ async def echo_handler(message: types.Message) -> None:
 
 
 if __name__ == "__main__":
+    asyncio.get_event_loop().run_until_complete(connect_db())
     asyncio.run(main_loop())
